@@ -4,7 +4,8 @@
   "description": "",
   "main": "binary-search.js",
   "scripts": {
-    "test": "tsc algs/*.ts; jest"
+    "dev": "tsc; tsc --watch",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",

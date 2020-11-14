@@ -1,4 +1,4 @@
-function binarySearch(searchVal: number, arr: number[], start = 0, end = arr.length - 1) {
+function binarySearch(searchVal: number, arr: number[], start = 0, end = arr.length - 1): number|null {
   const mid = Math.floor((start + end) / 2)
 
   if (searchVal === arr[mid]) {
