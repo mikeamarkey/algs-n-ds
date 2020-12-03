@@ -4,13 +4,15 @@
   "description": "",
   "main": "binary-search.js",
   "scripts": {
-    "dev": "tsc; tsc --watch",
-    "test": "jest"
+    "dev": "concurrently 'npm:watch-*'",
+    "watch-ts": "tsc; tsc --watch;",
+    "watch-jest": "jest --watch"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "concurrently": "^5.3.0",
     "jest": "^26.6.2",
     "typescript": "^4.0.5"
   }
