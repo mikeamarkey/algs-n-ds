@@ -1,28 +1,47 @@
 const fs = require('fs')
 
-function getTsTemplate(name: string): string {
-  return `function ${name}() {
+function capitalize(word: string) {
+  return word.charAt(0).toUpperCase() + word.slice(1)
+}
+
+function toCamelCase(str: string) {
+  return str.replace(/[-_][a-z]/g, (rep: string) => rep[1].toUpperCase())
+}
+
+function getTsTemplate(type: string, name: string): string {
+  let template: string
+
+  if (type === 'ds') {
+    const capitalized = capitalize(name)
+    template = `class ${capitalized} {
+
+}
+
+module.exports = ${capitalized}
+`
+  } else {
+    template = `function ${name}() {
 
 }
 
 module.exports = ${name}
 `
+  }
+
+  return template
 }
 
-function getTestTemplate(name: string): string {
+function getTestTemplate(type: string, name: string): string {
+  const importName = type === 'ds' ? capitalize(name) : name
   return `const { test, expect } = require('@jest/globals')
-const ${name} = require('./${name}')
+const ${importName} = require('./${name}')
 
-describe('${name}', () => {
+describe('${importName}', () => {
   test.skip('', () => {
 
   })
 })
 `
-}
-
-function toCamelCase(str: string) {
-  return str.replace(/[-_][a-z]/g, (rep: string) => rep[1].toUpperCase())
 }
 
 function create(): void {
@@ -45,8 +64,8 @@ function create(): void {
   }
 
   fs.mkdirSync(dir)
-  fs.writeFileSync(`${dir}/${name}.ts`, getTsTemplate(name))
-  fs.writeFileSync(`${dir}/${name}.test.js`, getTestTemplate(name))
+  fs.writeFileSync(`${dir}/${name}.ts`, getTsTemplate(type, name))
+  fs.writeFileSync(`${dir}/${name}.test.js`, getTestTemplate(type, name))
   console.log('done!')
 }
 
