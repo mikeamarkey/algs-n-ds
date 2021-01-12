@@ -16,6 +16,14 @@ describe('stack', () => {
     expect(stack.peek).toBe(2)
   })
 
+  test('Empty pop, peek', () => {
+    const stack = new Stack()
+    const popped = stack.pop()
+    expect(popped).toBe(undefined)
+    expect(stack.peek).toBe(undefined)
+    expect(stack.length).toBe(0)
+  })
+
   test('Stack.pop', () => {
     const stack = new Stack()
     stack.push(1)

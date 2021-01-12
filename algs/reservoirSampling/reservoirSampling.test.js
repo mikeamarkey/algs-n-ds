@@ -18,14 +18,13 @@ describe('reservoirSampling', () => {
     const counter = {
       1: 0,
       2: 0,
-      3: 0
+      3: 0,
     }
     for (let i = 0; i < testCount; i++) {
       const result = reservoirSampling(input, 1)
       counter[result[0]]++
       set.add(JSON.stringify(result))
     }
-    console.log(counter)
     expect(set.size).toBe(input.length)
   })
 
