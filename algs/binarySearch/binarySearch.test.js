@@ -1,7 +1,7 @@
 const { test, expect } = require('@jest/globals')
-const binarySearch = require('./binary-search')
+const binarySearch = require('./binarySearch')
 
-describe('binary search', () => {
+describe('binarySearch', () => {
   test('empty array return null', () => {
     expect(binarySearch(10, [])).toBe(null)
   })

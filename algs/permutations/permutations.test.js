@@ -1,7 +1,7 @@
 const { test, expect } = require('@jest/globals')
 const permutations = require('./permutations')
 
-describe.skip('permutations test', () => {
+describe.skip('permutations', () => {
   test('empty array should return empty array', () => {
     expect(permutations([])).toEqual([])
   })
